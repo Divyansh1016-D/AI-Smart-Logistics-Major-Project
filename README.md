@@ -24,3 +24,49 @@ OptiRoute ek advanced, end-to-end logistics optimization platform hai jise moder
 * **Database:** MongoDB, PostgreSQL
 * **Machine Learning:** Python, Scikit-Learn, XGBoost# AI-Smart-Logistics-Major-Project
 BTech 8th Sem Major Project by Divyansh Shrivastava
+# OptiRoute: AI-Powered Smart Supply Chain & Logistics Optimizer
+
+## 🎓 B.Tech 8th Semester Major Project Submission
+* **Project Title:** AI-Driven Smart Supply Chain & Logistics Optimizer
+* **Student Name:** Divyansh Shrivastava
+* **Department:** Computer Science & Engineering (CSE)
+* **Batch:** 2022 - 2026
+* **Project Type:** Full-Stack Web Application + Advanced Machine Learning Pipelines
+* **Academic Year:** 2026
+
+---
+
+## 🛑 1. Introduction & Problem Statement
+Modern logistics industry me traditional routing systems static maps aur fixed schedules par kaam karte hain. Is wajah se enterprise operations ko bohot saari dikkaton ka samna karna padta hai:
+* **Unexpected Delays:** Weather fluctuations aur sudden traffic jams ka pehle se pata na chalna.
+* **Fuel Inefficiency:** Shortest path ki jagah purane lambe raste use karne se fuel ki wastage aur high carbon footprint.
+* **Dead Mileage:** Empty trucks ka return route optimize na hona, jisse overhead costs badhti hain.
+* **Lack of Predictive Data:** Delivery estimation sirf guess-work par chalta hai, jisse customer satisfaction drop hota hai.
+
+**OptiRoute** in saari dikkaton ko solve karne ke liye AI aur Graph Theory ka use karke ek dynamic, automated, aur enterprise-grade logistics optimization ecosystem provide karta hai.
+
+---
+
+## 🎯 2. Proposed System Architecture & Flow
+
+Humne is platform ko 3 main layers me design kiya hai: Client-Side Dashboard, Backend Core Microservice, aur Python AI Engine.
+
+![Logistics Network Architecture](https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80)
+
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│                        frontend/ (React.js UI)                         │
+│   - Admin Control Center   - Driver Live Tracking   - Analytics Graphs │
+└──────────────────────────────────┬─────────────────────────────────────┘
+                                   │ (REST APIs / WebSockets)
+                                   ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                        backend/ (Node.js API)                          │
+│   - JWT Auth & Sessions   - MongoDB CRUD   - PostgreSQL PostGIS Spatial │
+└──────────────────────────────────┬─────────────────────────────────────┘
+                                   │ (Internal Fast Microservice API)
+                                   ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                     ml_models/ (Python FastAPI)                        │
+│   - XGBoost Regressor Model   - Dijkstra Path Logic   - Data Pipelines │
+└────────────────────────────────────────────────────────────────────────┘
