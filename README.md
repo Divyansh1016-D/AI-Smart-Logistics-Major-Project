@@ -49,3 +49,61 @@ Humne is platform ko 3 main layers me design kiya hai: Client-Side Dashboard, Ba
 │                     ml_models/ (Python FastAPI)                        │
 │   - XGBoost Regressor Model   - Dijkstra Path Logic   - Data Pipelines │
 └────────────────────────────────────────────────────────────────────────┘
+// File Path: backend/controllers/routeOrchestrator.js
+const axios = require('axios');
+
+const handleRouteOptimizationPipeline = async (req, res) => {
+    try {
+        const { start_node, end_node, payload_weight, vehicle_specs } = req.body;
+
+        console.log(`[Orchestrator] Initiating transit pipeline from ${start_node} to ${end_node}`);
+
+        // Direct communication loop with Python FastAPI ML Engine
+        const mlEngineResponse = await axios.post('http://localhost:8000/predict-eta', {
+            distance_km: req.body.distance_km || 12.5,
+            traffic_density: req.body.traffic_density || "High",
+            weather_condition: req.body.weather_condition || "Clear",
+            vehicle_type: vehicle_specs || "Truck"
+        });
+
+        const optimalRouteMetrics = mlEngineResponse.data;
+
+        // Structured response generation for frontend consumption
+        return res.status(200).json({
+            status: "Orchestration Pipeline Complete",
+            origin: start_node,
+            destination: end_node,
+            loadEfficiency: payload_weight > 500 ? "Heavy Load Constraints Applied" : "Standard Optimal",
+            aiEngineOutputs: optimalRouteMetrics
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            error: "Pipeline breakdown between Node Gateway and Python ML nodes.",
+            details: error.message
+        });
+    }
+};
+
+module.exports = { handleRouteOptimizationPipeline };
+MIT LICENSE
+
+Copyright (c) 2026 Divyansh Shrivastava
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+THE ABOVE COPYRIGHT NOTICE AND THIS PERMISSION NOTICE SHALL BE INCLUDED IN ALL
+COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
