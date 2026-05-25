@@ -32,7 +32,6 @@ Humne is platform ko 3 main layers me design kiya hai: Client-Side Dashboard, Ba
 
 ![Logistics Network Architecture](https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80)
 
-```text
 ┌────────────────────────────────────────────────────────────────────────┐
 │                        frontend/ (React.js UI)                         │
 │   - Admin Control Center   - Driver Live Tracking   - Analytics Graphs │
@@ -54,36 +53,7 @@ const axios = require('axios');
 
 const handleRouteOptimizationPipeline = async (req, res) => {
     try {
-        const { start_node, end_node, payload_weight, vehicle_specs } = req.body;
-
-        console.log(`[Orchestrator] Initiating transit pipeline from ${start_node} to ${end_node}`);
-
-        // Direct communication loop with Python FastAPI ML Engine
-        const mlEngineResponse = await axios.post('http://localhost:8000/predict-eta', {
-            distance_km: req.body.distance_km || 12.5,
-            traffic_density: req.body.traffic_density || "High",
-            weather_condition: req.body.weather_condition || "Clear",
-            vehicle_type: vehicle_specs || "Truck"
-        });
-
-        const optimalRouteMetrics = mlEngineResponse.data;
-
-        // Structured response generation for frontend consumption
-        return res.status(200).json({
-            status: "Orchestration Pipeline Complete",
-            origin: start_node,
-            destination: end_node,
-            loadEfficiency: payload_weight > 500 ? "Heavy Load Constraints Applied" : "Standard Optimal",
-            aiEngineOutputs: optimalRouteMetrics
-        });
-
-    } catch (error) {
-        return res.status(500).json({
-            error: "Pipeline breakdown between Node Gateway and Python ML nodes.",
-            details: error.message
-        });
-    }
-};
+        const { start_node, end_node, payload_weight, vehicle_specs } 
 
 module.exports = { handleRouteOptimizationPipeline };
 MIT LICENSE
